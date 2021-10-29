@@ -1,0 +1,84 @@
+﻿@model List<Project_Canteen_MS.Models.Product>
+
+@{
+    ViewBag.Title = "List Product";
+}
+<main>
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-xl px-4">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            </div>
+                            List Product
+                        </h1>
+                    </div>
+                    <div class="col-12 col-xl-auto mt-4">
+                        <div class="input-group input-group-joined border-0" style="width: 16.5rem">
+                            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar text-primary"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
+                            <input class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main page content-->
+    <div class="container-xl px-4 mt-n10">
+        <div class="card mb-4">
+            <div class="card-header">Extended DataTables
+                    
+                <a href="~/Admin/Products/Create" style="float:right;">
+                    <button class="btn btn-sm btn-primary" style="float:right" type="button">
+                        Create Product
+                    </button>
+                </a>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td><img src="@Url.Content(item.Image)" width="50" /></td>
+                            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Brand.Name)</td>
+                            <td><div class="badge bg-primary text-white rounded-pill">Full-time</div></td>
+                            <td>
+                                <button class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                    <a href="~/Admin/Products/Edit/@item.Id" style="color: slategray">
+                                        <i data-feather="edit"></i>
+                                    </a>
+                                 </button>
+                                <button class="btn btn-datatable btn-icon btn-transparent-dark">
+
+                                    <a onlick="return confirm('Are you sure ?')" href="~/Admin/Products/Delete/@item.Id" style="color:slategray">
+                                        <i data-feather="trash-2" ></i>
+                                </button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

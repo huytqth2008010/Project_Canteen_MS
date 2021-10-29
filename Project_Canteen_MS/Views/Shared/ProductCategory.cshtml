@@ -1,0 +1,11 @@
+﻿@model List<Project_Canteen_MS.Models.Category>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Danh mục sản phẩm</a>
+    <div class="dropdown-menu" aria-labelledby="dropdown-a">
+        @foreach (var item in Model)
+        {
+        <a class="dropdown-item" href="/san-pham/@item.Name-@item.Id">@item.Name</a>
+        }
+    </div>
+</li>
