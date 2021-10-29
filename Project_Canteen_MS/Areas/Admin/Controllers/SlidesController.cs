@@ -15,6 +15,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         private DataContext db = new DataContext();
 
         // GET: Admin/Slides
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Slides.ToList());

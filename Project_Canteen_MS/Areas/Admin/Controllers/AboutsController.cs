@@ -15,6 +15,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         private DataContext context = new DataContext();
 
         // GET: Categories
+        [Authorize]
         public ActionResult Index()
         {
             return View(context.Abouts.ToList());

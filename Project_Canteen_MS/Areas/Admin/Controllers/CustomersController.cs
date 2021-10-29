@@ -13,7 +13,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
     public class CustomersController : Controller
     {
         private DataContext db = new DataContext();
-
+        [Authorize]
         // GET: Admin/Customers
         public ActionResult Index()
         {
