@@ -97,7 +97,11 @@
                                 {
                                     <div class="col-lg-4 col-md-6 special-grid drinks">
                                         <div class="gallery-single fix">
-                                            <img src="@Url.Content(pd.Image)" class="img-fluid" alt="Image"/>
+                                            
+                                            @if (!string.IsNullOrWhiteSpace(pd.Image))
+                                            {
+                                            <img src="@Url.Content(pd.Image)" class="img-fluid" alt="Image" />
+                                            }
                                             <div class="why-text">
                                                 <h4> @Html.DisplayFor(modelItem => pd.Name)</h4>
                                                 <p>Sed id magna vitae eros sagittis euismod.</p>

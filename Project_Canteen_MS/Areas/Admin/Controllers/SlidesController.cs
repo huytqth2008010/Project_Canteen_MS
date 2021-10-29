@@ -55,6 +55,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
                 {
                     if (Image != null)
                     {
+
                         string fileName = Path.GetFileName(Image.FileName);// lay url path khi upload len
                         string path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
                         Image.SaveAs(path);
@@ -134,12 +135,12 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Slide slide = db.Slides.Find(id);
+            if (slide == null)
             {
                 return HttpNotFound();
             }
-            db.Products.Remove(product);
+            db.Slides.Remove(slide);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
