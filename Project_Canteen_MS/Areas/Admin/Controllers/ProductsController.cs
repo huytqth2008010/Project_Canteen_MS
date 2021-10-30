@@ -119,7 +119,6 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
                         Image.SaveAs(path);
                         catImg = "~/Uploads/" + fileName;
                     }
-
                 }
                 catch (Exception e)
                 {

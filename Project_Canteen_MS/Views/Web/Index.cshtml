@@ -7,52 +7,31 @@
 
 <!-- Start slides -->
 <div id="slides" class="cover-slides">
-		<ul class="slides-container" style="margin: 0px; padding: 0px; list-style: none; position: relative; height: 100%; display: block;">
-			<li class="text-left">
-				<img src="~/Content/webcanteen/images/slider-01.jpg" alt="" style="height:700px;width:100%">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h1 class="m-b-20"><strong>Welcome To <br> Live Dinner Restaurant</strong></h1>
-							<p class="m-b-40">See how your users experience your website in realtime or view  <br> 
-							trends to see any changes in performance over time.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li class="text-left">
-				<img src="~/Content/webcanteen/images/slider-02.jpg" alt=""style="height:700px;width:100%">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h1 class="m-b-20"><strong>Welcome To <br> Live Dinner Restaurant</strong></h1>
-							<p class="m-b-40">See how your users experience your website in realtime or view  <br> 
-							trends to see any changes in performance over time.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li class="text-left">
-				<img src="~/Content/webcanteen/images/slider-03.jpg" alt=""style="height:700px;width:100%">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h1 class="m-b-20"><strong>Welcome To <br> Yamifood Restaurant</strong></h1>
-							<p class="m-b-40">See how your users experience your website in realtime or view  <br> 
-							trends to see any changes in performance over time.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
-						</div>
-					</div>
-				</div>
-			</li>
-		</ul>
-		<div class="slides-navigation">
-			<a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-			<a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-		</div>
-	</div>
+    <ul class="slides-container">
+        @foreach (Project_Canteen_MS.Models.Slide item in Model.Slides)
+        {
+            <li class="text-left">
+                <img src="@Url.Content(item.Image)" />
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> @Html.DisplayFor(modelItem => item.Title)</strong></h1>
+                            <p class="m-b-40">
+                                @Html.DisplayFor(modelItem => item.Content)
+                            </p>
+                            <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+    <div class="slides-navigation">
+        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    </div>
+</div>
 <!-- End slides -->
 <!-- Start About -->
 <div class="about-section-box">
@@ -130,43 +109,28 @@
                                         </div>
                                     </div>
                                 </div>
-                            }
+                             }
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="images/img-01.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Drinks 1</h4>
-                                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                                        <h5> $7.79</h5>
-                                    </div>
-                                </div>
-                            </div>
+                            @foreach (Project_Canteen_MS.Models.Product pd1 in Model.Products1)
+                            {
+                                <div class="col-lg-4 col-md-6 special-grid drinks">
+                                    <div class="gallery-single fix">
 
-                            <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="images/img-02.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Drinks 2</h4>
-                                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                                        <h5> $9.79</h5>
+                                        @if (!string.IsNullOrWhiteSpace(pd1.Image))
+                                        {
+                                            <img src="@Url.Content(pd1.Image)" class="img-fluid" alt="Image" />
+                                        }
+                                        <div class="why-text">
+                                            <h4> @Html.DisplayFor(modelItem => pd1.Name)</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> @Html.DisplayFor(modelItem => pd1.Price)</h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="images/img-03.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Drinks 3</h4>
-                                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                                        <h5> $10.79</h5>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
 
                     </div>
@@ -296,4 +260,3 @@
         </div>
     </div>
 </div>
-<!-- End Gallery -->

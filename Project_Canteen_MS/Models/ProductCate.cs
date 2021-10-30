@@ -21,5 +21,10 @@ namespace Project_Canteen_MS.Models
             return db.Categories.Find(id);
         }
 
+
+        public List<Product> ListByCategoryId(long cateId)
+        {
+            return db.Products.Where(x => x.CategoryID == cateId).ToList();
+        }
     }
 }

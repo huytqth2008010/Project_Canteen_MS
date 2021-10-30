@@ -67,6 +67,7 @@ namespace Project_Canteen_MS
                        "~/Content/webcanteen/js/picker.js",
                        "~/Content/webcanteen/js/picker.time.js",
                        "~/Content/webcanteen/js/popper.min.js",
+                       "~/Content/webcanteen/js/myNav.js",
                        "~/Content/webcanteen/js/baguetteBox.min.js"
                ));
 

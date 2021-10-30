@@ -248,6 +248,7 @@
     <Content Include="Content\webcanteen\js\jquery.mapify.js" />
     <Content Include="Content\webcanteen\js\jquery.superslides.min.js" />
     <Content Include="Content\webcanteen\js\legacy.js" />
+    <Content Include="Content\webcanteen\js\myNav.js" />
     <Content Include="Content\webcanteen\js\picker.date.js" />
     <Content Include="Content\webcanteen\js\picker.js" />
     <Content Include="Content\webcanteen\js\picker.time.js" />

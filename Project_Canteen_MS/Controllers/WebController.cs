@@ -17,6 +17,8 @@ namespace Project_Canteen_MS.Controllers
             dynamic data = new ExpandoObject();
             data.Slides = db.Slides.ToList();
             data.Products = db.Products.ToList();
+            data.Products1 = db.Products.Where(x=>x.CategoryID == 1).ToList();
+
             return View(data);
         }
         public ActionResult About()
@@ -38,8 +40,10 @@ namespace Project_Canteen_MS.Controllers
         }
         public ActionResult Category(long id)
         {
-            var cate = new ProductCate().ViewDetail(id);
-            return View(cate);
+            var category = new ProductCate().ViewDetail(id);
+            ViewBag.Category = category;
+            var model = new ProductCate().ListByCategoryId(id).ToList();
+            return View(model);
         }
     }
  }
