@@ -15,6 +15,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         private DataContext db = new DataContext();
 
         // GET: Admin/Slides
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Slides.ToList());
@@ -54,6 +55,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
                 {
                     if (Image != null)
                     {
+
                         string fileName = Path.GetFileName(Image.FileName);// lay url path khi upload len
                         string path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
                         catImg = "~/Uploads/" + fileName;

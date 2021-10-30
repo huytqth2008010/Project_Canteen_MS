@@ -7,13 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Project_Canteen_MS.Models;
-
+using System.IO;
 namespace Project_Canteen_MS.Areas.Admin.Controllers
 {
     public class CustomersController : Controller
     {
         private DataContext db = new DataContext();
-
+        [Authorize]
         // GET: Admin/Customers
         public ActionResult Index()
         {
@@ -46,10 +46,29 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Title,Content,Image")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,Name,Title,Content,Image")] Customer customer, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                string catImg = "~/Uploads/default.png"; //edit -  product.Image
+                try
+                {
+                    if (Image != null)
+                    {
+                        string fileName = Path.GetFileName(Image.FileName);// lay url path khi upload len
+                        string path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+                        Image.SaveAs(path);
+                        catImg = "~/Uploads/" + fileName;
+                    }
+
+                }
+                catch (Exception e)
+                {
+                }
+                finally
+                {
+                    customer.Image = catImg;// set giá trị sau khi upload ảnh lên vào product
+                }
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,10 +97,29 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Title,Content,Image")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,Name,Title,Content,Image")] Customer customer, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                string catImg = customer.Image; //edit -  product.Image
+                try
+                {
+                    if (Image != null)
+                    {
+                        string fileName = Path.GetFileName(Image.FileName);// lay url path khi upload len
+                        string path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+                        Image.SaveAs(path);
+                        catImg = "~/Uploads/" + fileName;
+                    }
+
+                }
+                catch (Exception e)
+                {
+                }
+                finally
+                {
+                    customer.Image = catImg;// set giá trị sau khi upload ảnh lên vào product
+                }
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -94,34 +132,16 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
-        }
-
-        // POST: Admin/Customers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Customer customer = db.Customers.Find(id);
             db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -47,19 +47,21 @@ namespace Project_Canteen_MS
                     "~/Content/webcanteen/css/font-awesome.min.css",
                     "~/Content/webcanteen/css/responsive.css",
                     "~/Content/webcanteen/css/style.css",
-                    "~/Content/webcanteen/css/superslides.css"
+                    "~/Content/webcanteen/css/superslides.css",
+                    "~/Content/webcanteen/bootstrap-theme.css"
               ));
             //add js theme web
             bundles.Add(new ScriptBundle("~/webcanteen/js").Include(
+                   "~/Content/webcanteen/js/jquery-3.2.1.min.js",
+                       "~/Content/webcanteen/js/jquery.mapify.js",
+                       "~/Content/webcanteen/js/jquery.superslides.min.js",
+                       "~/Content/webcanteen/js/baguetteBox.min.js",
                        "~/Content/webcanteen/js/bootstrap.min.js",
                        "~/Content/webcanteen/js/contact-form-script.js",
                        "~/Content/webcanteen/js/custom.js",
                        "~/Content/webcanteen/js/form-validator.min.js",
                        "~/Content/webcanteen/js/images-loded.min.js",
                        "~/Content/webcanteen/js/isotope.min.js",
-                       "~/Content/webcanteen/js/jquery-3.2.1.min.js",
-                       "~/Content/webcanteen/js/jquery.mapify.js",
-                       "~/Content/webcanteen/js/jquery.superslides.min.js",
                        "~/Content/webcanteen/js/legacy.js",
                        "~/Content/webcanteen/js/picker.date.js",
                        "~/Content/webcanteen/js/picker.js",
@@ -67,6 +69,7 @@ namespace Project_Canteen_MS
                        "~/Content/webcanteen/js/popper.min.js",
                        "~/Content/webcanteen/js/baguetteBox.min.js"
                ));
+
         }
     }
 }

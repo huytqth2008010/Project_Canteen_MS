@@ -77,12 +77,14 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
             }
             return View();
         }
-        [HttpPost]
-        public ActionResult LogOff()
-        {
-            //WebSecurity.Logout();
-            FormsAuthentication.SignOut();
-            return Redirect("#");
-        }
+        //[HttpPost]
+
+        //public ActionResult Logout()
+        //{
+        //    Session.Clear();//remove session
+        //    return RedirectToAction("Login");
+        //}
+    
+    
     }
 }

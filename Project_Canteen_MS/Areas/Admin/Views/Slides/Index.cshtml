@@ -58,10 +58,12 @@
                             <td>@Html.DisplayFor(modelItem => item.Content)</td>
                             <td>
                                 @if (!string.IsNullOrWhiteSpace(item.Image))
-                                 {
+                                {
                                     <img src="@Url.Content(item.Image)" width="50" />
-                                 }
+                                }
+
                             </td>
+
                             <td>
                                 <button class="btn btn-datatable btn-icon btn-transparent-dark me-2">
                                     <a href="~/Admin/Slides/Edit/@item.Id" style="color: slategray">
