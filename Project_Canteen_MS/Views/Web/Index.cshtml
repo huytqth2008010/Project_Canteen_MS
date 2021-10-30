@@ -16,11 +16,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> @Html.DisplayFor(modelItem => item.Title)</strong></h1>
+                            <h1 class="m-b-20"><strong>Chào mừng bạn đến <br> @Html.DisplayFor(modelItem => item.Title)</strong></h1>
                             <p class="m-b-40">
                                 @Html.DisplayFor(modelItem => item.Content)
                             </p>
-                            <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
+                            <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Liên Hệ</a></p>
                         </div>
                     </div>
                 </div>
@@ -39,8 +39,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="heading-title text-center">
-                    <h2>Gallery</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                    <h2>Tất cả các sản phẩm</h2>
+                    <p>Đây là tất cả các sản phẩm của cửa hàng chúng tôi</p>
                 </div>
             </div>
         </div>
@@ -49,16 +49,29 @@
                 @foreach (Project_Canteen_MS.Models.Product item in Model.Products)
                 {
                     <div class="col-sm-6 col-md-4 col-lg-4 special-grid drinks">
-                        <div class="gallery-single fix">
+                        <div class="gallery-single fix ">
                             <img src="@Url.Content(item.Image)" class="img-fluid" alt="Image">
                             <div class="why-text">
-                                <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                                <h1>@Html.ActionLink(item.Name, "Details", new { id = item.Id })</h1>
                                 <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                                <div style="display:flex;position:absolute;bottom:0">
-                                    <h5><del> @Html.DisplayFor(modelItem => item.Price)&nbsp;VNĐ</del></h5>
-                                    <h5>&nbsp;-&nbsp;</h5>
-                                    <h5>@Html.DisplayFor(modelItem => item.PromotionPrice)&nbsp;VNĐ</h5>
-                                </div>
+                                @if (item.PromotionPrice >= 1)
+                                {
+                                    <div style="display: flex; position: absolute; bottom: 0; ">
+                                        <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
+                                        <h5>&nbsp;-&nbsp;</h5>
+                                        <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
+
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div style="display:flex;position:absolute;bottom:0">
+                                        <h5> ₫@Html.DisplayFor(modelItem => item.Price)</h5>
+                                    </div>
+                                }
+                                <a href="#" style="float:right"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+
                             </div>
                         </div>
                     </div>
@@ -89,43 +102,30 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="heading-title text-center">
-                    <h2>Gallery</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                    <h2>Tất cả các sản phẩm giảm giá</h2>
+                    <p>Đây là tất cả các sản phẩm đang được giảm giá của cửa hàng chúng tôi</p>
                 </div>
             </div>
         </div>
         <div class="tz-gallery">
             <div class="row">
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <a class="lightbox" href="images/gallery-img-01.jpg">
-                        <img class="img-fluid" src="images/gallery-img-01.jpg" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="images/gallery-img-02.jpg">
-                        <img class="img-fluid" src="images/gallery-img-02.jpg" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="images/gallery-img-03.jpg">
-                        <img class="img-fluid" src="images/gallery-img-03.jpg" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <a class="lightbox" href="images/gallery-img-04.jpg">
-                        <img class="img-fluid" src="images/gallery-img-04.jpg" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="images/gallery-img-05.jpg">
-                        <img class="img-fluid" src="images/gallery-img-05.jpg" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="images/gallery-img-06.jpg">
-                        <img class="img-fluid" src="images/gallery-img-06.jpg" alt="Gallery Images">
-                    </a>
-                </div>
+                @foreach (Project_Canteen_MS.Models.Product item in Model.Products1)
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-4 special-grid drinks">
+                        <div class="gallery-single fix ">
+                            <img src="@Url.Content(item.Image)" class="img-fluid" alt="Image">
+                            <div class="why-text">
+                                <h1>@Html.ActionLink(item.Name, "Details", new { id = item.Id })</h1>
+                                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                <div style="display:flex;position:absolute;bottom:0">
+                                    <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
+                                    <h5>&nbsp;-&nbsp;</h5>
+                                    <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>

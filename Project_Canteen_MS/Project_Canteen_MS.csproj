@@ -353,6 +353,7 @@
     <Content Include="Views\Web\Contact.cshtml" />
     <Content Include="Views\Web\Shop.cshtml" />
     <Content Include="Views\Web\Category.cshtml" />
+    <Content Include="Views\Web\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
