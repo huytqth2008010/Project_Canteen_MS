@@ -50,7 +50,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Quantity,Price,Image,Description,CategoryID,BrandID")] Product product, HttpPostedFileBase Image)
+        public ActionResult Create([Bind(Include = "Id,Name,Quantity,Price,PromotionPrice,Image,Description,CategoryID,BrandID")] Product product, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Quantity,Price,Image,Description,CategoryID,BrandID")] Product product, HttpPostedFileBase Image)
+        public ActionResult Edit([Bind(Include = "Id,Name,Quantity,Price,PromotionPrice,Image,Description,CategoryID,BrandID")] Product product, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +119,10 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
                         Image.SaveAs(path);
                         catImg = "~/Uploads/" + fileName;
                     }
-
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
                 catch (Exception e)
                 {

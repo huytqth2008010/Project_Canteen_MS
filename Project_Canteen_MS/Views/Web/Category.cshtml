@@ -1,8 +1,44 @@
-﻿
+﻿@model List<Project_Canteen_MS.Models.Product>
 @{
+    var cate = (Project_Canteen_MS.Models.Category)ViewBag.Category;
     ViewBag.Title = "Category";
     Layout = "~/Views/Shared/_WebPage.cshtml";
 }
 @model Project_Canteen_MS.Models.Category
-<h2>Category</h2>
 
+<div class="menu-box" style="padding-top:200px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-title text-center">
+                    <h2>@cate.Name</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row inner-menu-box">
+            <div class="col-12">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-lg-4 col-md-6 special-grid drinks">
+                                    <div class="gallery-single fix">
+                                        <img src="@Url.Content(item.Image)" class="img-fluid" alt="Image">
+                                        <div class="why-text">
+                                            <h4>@item.Name</h4>
+                                            <p>@item.Description</p>
+                                            <h5>@item.Price</h5>
+                                        </div>
+                                    </div>
+                                </div>}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
