@@ -41,15 +41,14 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/Slides/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,Image")] Slide slide, HttpPostedFileBase Image)
+        public ActionResult Create([Bind(Include = "Id,Title,Content")] Slide slide, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                // upload image
                 string catImg = "~/Uploads/default.png"; //edit -  category.Image
                 try
                 {
@@ -57,8 +56,8 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
                     {
                         string fileName = Path.GetFileName(Image.FileName);// lay url path khi upload len
                         string path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
-                        Image.SaveAs(path);
                         catImg = "~/Uploads/" + fileName;
+                        Image.SaveAs(path);
                     }
 
                 }
@@ -69,11 +68,11 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
                 {
                     slide.Image = catImg;// set giá trị sau khi upload ảnh lên vào category
                 }
-                db.Slides.Add(slide);
-                db.SaveChanges();
+
+                db.Slides.Add(slide);// them 1 object vao list
+                db.SaveChanges();// luu vao db
                 return RedirectToAction("Index");
             }
-
             return View(slide);
         }
 
@@ -97,7 +96,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Content,Image")] Slide slide, HttpPostedFileBase Image)
+        public ActionResult Edit([Bind(Include = "Id,Title,Content")] Slide slide, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
@@ -134,12 +133,12 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Slide slide = db.Slides.Find(id);
+            if (slide == null)
             {
                 return HttpNotFound();
             }
-            db.Products.Remove(product);
+            db.Slides.Remove(slide);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

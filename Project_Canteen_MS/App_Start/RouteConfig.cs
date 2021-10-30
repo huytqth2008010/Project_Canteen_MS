@@ -14,14 +14,15 @@ namespace Project_Canteen_MS
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Web", action = "Index", id = UrlParameter.Optional }
-            );
-            routes.MapRoute(
                 name: "Product Category",
                 url: "san-pham/{name}-{id}",
                 defaults: new { controller = "Web", action = "Category", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Web", action = "Index", id = UrlParameter.Optional }
             );
 
         }

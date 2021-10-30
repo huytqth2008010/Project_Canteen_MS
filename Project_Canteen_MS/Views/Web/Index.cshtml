@@ -7,31 +7,52 @@
 
 <!-- Start slides -->
 <div id="slides" class="cover-slides">
-    <ul class="slides-container">
-        @foreach (Project_Canteen_MS.Models.Slide item in Model.Slides)
-        {
-            <li class="text-left">
-                <img src="@Url.Content(item.Image)" />
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> @Html.DisplayFor(modelItem => item.Title)</strong></h1>
-                            <p class="m-b-40">
-                                @Html.DisplayFor(modelItem => item.Content)
-                            </p>
-                            <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        }
-    </ul>
-    <div class="slides-navigation">
-        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-    </div>
-</div>
+		<ul class="slides-container" style="margin: 0px; padding: 0px; list-style: none; position: relative; height: 100%; display: block;">
+			<li class="text-left">
+				<img src="~/Content/webcanteen/images/slider-01.jpg" alt="" style="height:700px;width:100%">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20"><strong>Welcome To <br> Live Dinner Restaurant</strong></h1>
+							<p class="m-b-40">See how your users experience your website in realtime or view  <br> 
+							trends to see any changes in performance over time.</p>
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="text-left">
+				<img src="~/Content/webcanteen/images/slider-02.jpg" alt=""style="height:700px;width:100%">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20"><strong>Welcome To <br> Live Dinner Restaurant</strong></h1>
+							<p class="m-b-40">See how your users experience your website in realtime or view  <br> 
+							trends to see any changes in performance over time.</p>
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="text-left">
+				<img src="~/Content/webcanteen/images/slider-03.jpg" alt=""style="height:700px;width:100%">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20"><strong>Welcome To <br> Yamifood Restaurant</strong></h1>
+							<p class="m-b-40">See how your users experience your website in realtime or view  <br> 
+							trends to see any changes in performance over time.</p>
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a></p>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="slides-navigation">
+			<a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+			<a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+		</div>
+	</div>
 <!-- End slides -->
 <!-- Start About -->
 <div class="about-section-box">
@@ -95,16 +116,19 @@
                         <div class="row">
                             @foreach (Project_Canteen_MS.Models.Product pd in Model.Products)
                                 {
-                                    <div class="col-lg-4 col-md-6 special-grid drinks">
-                                        <div class="gallery-single fix">
-                                            <img src="@Url.Content(pd.Image)" class="img-fluid" alt="Image"/>
-                                            <div class="why-text">
-                                                <h4> @Html.DisplayFor(modelItem => pd.Name)</h4>
-                                                <p>Sed id magna vitae eros sagittis euismod.</p>
-                                                <h5> @Html.DisplayFor(modelItem => pd.Price)</h5>
-                                            </div>
+                                <div class="col-lg-4 col-md-6 special-grid drinks">
+                                    <div class="gallery-single fix">
+                                        @if (!string.IsNullOrWhiteSpace(pd.Image))
+                                        {
+                                            <img src="@Url.Content(pd.Image)" class="img-fluid" alt="Image" />
+                                        }
+                                        <div class="why-text">
+                                            <h4> @Html.DisplayFor(modelItem => pd.Name)</h4>
+                                            <p>Sed id magna vitae eros sagittis euismod.</p>
+                                            <h5> @Html.DisplayFor(modelItem => pd.Price)</h5>
                                         </div>
                                     </div>
+                                </div>
                                 }
                         </div>
                     </div>

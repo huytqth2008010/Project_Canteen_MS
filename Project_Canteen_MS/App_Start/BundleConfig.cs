@@ -51,7 +51,6 @@ namespace Project_Canteen_MS
               ));
             //add js theme web
             bundles.Add(new ScriptBundle("~/webcanteen/js").Include(
-                       "~/Content/webcanteen/js/baguetteBox.min.js",
                        "~/Content/webcanteen/js/bootstrap.min.js",
                        "~/Content/webcanteen/js/contact-form-script.js",
                        "~/Content/webcanteen/js/custom.js",
@@ -65,7 +64,8 @@ namespace Project_Canteen_MS
                        "~/Content/webcanteen/js/picker.date.js",
                        "~/Content/webcanteen/js/picker.js",
                        "~/Content/webcanteen/js/picker.time.js",
-                       "~/Content/webcanteen/js/popper.min.js"
+                       "~/Content/webcanteen/js/popper.min.js",
+                       "~/Content/webcanteen/js/baguetteBox.min.js"
                ));
         }
     }
