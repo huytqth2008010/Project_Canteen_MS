@@ -10,7 +10,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbars-rs-food">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto" id="myDIV">
                     <li class="nav-item active"><a class="nav-link" href="/">Trang chủ</a></li>
                     @{ Html.RenderAction("ProductCategory", "Web");}
                     <li class="nav-item"><a class="nav-link" href="~/Web/About">Về chúng tôi</a></li>
@@ -20,4 +20,18 @@
         </div>
     </nav>
 </header>
+<script>
+    var btnContainer = document.getElementById("myDIV");
+
+    var btns = btnContainer.getElementsByClassName("nav-item");
+    for (var i = 0; i < btns.length; i++) {
+
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+
+</script>
 <!-- End header -->

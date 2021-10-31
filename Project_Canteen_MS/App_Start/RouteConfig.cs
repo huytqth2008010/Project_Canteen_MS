@@ -13,7 +13,7 @@ namespace Project_Canteen_MS
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-        
+
             routes.MapRoute(
                 name: "Product Category",
                 url: "san-pham/{name}-{id}",
@@ -21,10 +21,10 @@ namespace Project_Canteen_MS
             );
 
             routes.MapRoute(
-            name: "Default",
-            url: "{controller}/{action}/{id}",
-            defaults: new { controller = "Web", action = "Index", id = UrlParameter.Optional }
-        );
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Web", action = "Index", id = UrlParameter.Optional }
+            );
 
         }
     }
