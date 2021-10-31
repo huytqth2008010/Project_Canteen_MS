@@ -18,6 +18,9 @@ namespace Project_Canteen_MS.Models
         [Required(ErrorMessage = "Vui lòng nhập Price ")]
 
         public int Price { get; set; }
+
+        public int PromotionPrice { get; set; }
+
         public string Image { get; set; }
         public string Description { get; set; }
         public int CategoryID { get; set; }

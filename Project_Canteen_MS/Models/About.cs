@@ -10,5 +10,7 @@ namespace Project_Canteen_MS.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        
+
     }
 }

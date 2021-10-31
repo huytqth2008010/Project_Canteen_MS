@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Project_Canteen_MS.Models;
 using System.IO;
+using System.Data.Entity.Migrations;
+
 namespace Project_Canteen_MS.Areas.Admin.Controllers
 {
     public class SlidesController : Controller
@@ -102,7 +104,8 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string catImg = slide.Image;
+
+                string catImg = slide.Image; //edit -  category.Image
                 try
                 {
                     if (Image != null)
@@ -112,14 +115,17 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
                         Image.SaveAs(path);
                         catImg = "~/Uploads/" + fileName;
                     }
-
+                    else
+                    {
+                        return RedirectToAction("Index");
+                      }
                 }
                 catch (Exception e)
                 {
                 }
                 finally
                 {
-                    slide.Image = catImg;// set giá trị sau khi upload ảnh lên vào product
+                    slide.Image = catImg;// set giá trị sau khi upload ảnh lên vào category
                 }
                 db.Entry(slide).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();

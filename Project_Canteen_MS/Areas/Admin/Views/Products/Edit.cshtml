@@ -80,6 +80,13 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
+                                    <label class="small mb-1">@Html.LabelFor(model => model.PromotionPrice)</label>
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.PromotionPrice, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PromotionPrice, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="mb-3">
                                     <label class="small mb-1">@Html.LabelFor(model => model.Description)</label>
                                     <div class="col-md-12">
                                         @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })

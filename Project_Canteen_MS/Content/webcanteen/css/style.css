@@ -97,6 +97,7 @@ h6 a:hover {
 }
 
 a {
+    font-size:18px;
     color: #1f1f1f;
     text-decoration: none;
     outline: none;
@@ -443,6 +444,8 @@ button:focus{
 	font-weight: 500;
 	font-family: 'Rubik', sans-serif;
 }
+
+
 .why-text p{
 	color: #ffffff;
 	font-size: 13px;

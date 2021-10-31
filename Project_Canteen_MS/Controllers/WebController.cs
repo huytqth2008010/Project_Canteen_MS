@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Project_Canteen_MS.Models;
 using System.IO;
 using System.Dynamic;
+using System.Net;
+
 namespace Project_Canteen_MS.Controllers
 {
     public class WebController : Controller
@@ -17,8 +19,7 @@ namespace Project_Canteen_MS.Controllers
             dynamic data = new ExpandoObject();
             data.Slides = db.Slides.ToList();
             data.Products = db.Products.ToList();
-            data.Products1 = db.Products.Where(x=>x.CategoryID == 1).ToList();
-
+            data.Products1 = db.Products.Where(x => x.PromotionPrice >= 1).ToList();
             return View(data);
         }
         public ActionResult About()
@@ -44,6 +45,19 @@ namespace Project_Canteen_MS.Controllers
             ViewBag.Category = category;
             var model = new ProductCate().ListByCategoryId(id).ToList();
             return View(model);
+        }
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
     }
  }
