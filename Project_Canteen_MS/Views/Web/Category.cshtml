@@ -4,18 +4,17 @@
     ViewBag.Title = "Category";
     Layout = "~/Views/Shared/_WebPage.cshtml";
 }
-@model Project_Canteen_MS.Models.Category
-
-<div class="menu-box" style="padding-top:200px">
-    <div class="container">
+<div class="all-page-title page-breadcrumb">
+    <div class="container text-center">
         <div class="row">
             <div class="col-lg-12">
-                <div class="heading-title text-center">
-                    <h2>@cate.Name</h2>
-                </div>
+                <h1>@cate.Name</h1>
             </div>
         </div>
-
+    </div>
+</div>
+<div class="menu-box">
+    <div class="container">
         <div class="row inner-menu-box">
             <div class="col-12">
                 <div class="tab-content" id="v-pills-tabContent">
@@ -23,22 +22,43 @@
                         <div class="row">
                             @foreach (var item in Model)
                             {
-                                <div class="col-lg-4 col-md-6 special-grid drinks">
-                                    <div class="gallery-single fix">
+                                <div class="col-sm-6 col-md-4 col-lg-4 special-grid drinks">
+                                    <div class="gallery-single fix ">
                                         <img src="@Url.Content(item.Image)" class="img-fluid" alt="Image">
                                         <div class="why-text">
-                                            <h4>@item.Name</h4>
-                                            <p>@item.Description</p>
-                                            <h5>@item.Price</h5>
+                                            <h1>@Html.ActionLink(item.Name, "Details", new { id = item.Id })</h1>
+                                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                            @if (item.PromotionPrice >= 1)
+                                            {
+                                                <div style="display: flex; position: absolute; bottom: 0;width:100% ">
+                                                    <div class="col-9" style="display:flex">
+                                                        <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
+                                                        <h5>&nbsp;-&nbsp;</h5>
+                                                        <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <a href="#" style="float:right;margin-top:-5px"><i class="fa fa-cart-plus" style="font-size:22px" aria-hidden="true"></i></a>
+
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div style="display:flex;position:absolute;bottom:0">
+                                                    <h5> ₫@Html.DisplayFor(modelItem => item.Price)</h5>
+                                                    <a href="#" style="float:right"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+
+                                                </div>
+                                            }
+
                                         </div>
                                     </div>
-                                </div>}
+                                </div>
+                            }
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
 </div>

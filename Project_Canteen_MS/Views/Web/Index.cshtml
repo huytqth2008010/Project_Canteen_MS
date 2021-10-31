@@ -56,21 +56,26 @@
                                 <p>@Html.DisplayFor(modelItem => item.Description)</p>
                                 @if (item.PromotionPrice >= 1)
                                 {
-                                    <div style="display: flex; position: absolute; bottom: 0; ">
-                                        <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
-                                        <h5>&nbsp;-&nbsp;</h5>
-                                        <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
+                                    <div style="display: flex; position: absolute; bottom: 0;width:100% ">
+                                        <div class="col-9" style="display:flex">
+                                            <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
+                                            <h5>&nbsp;-&nbsp;</h5>
+                                            <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href="#" style="float:right;margin-top:-5px"><i class="fa fa-cart-plus" style="font-size:22px" aria-hidden="true"></i></a>
 
+                                        </div>
                                     </div>
-
                                 }
                                 else
                                 {
                                     <div style="display:flex;position:absolute;bottom:0">
                                         <h5> ₫@Html.DisplayFor(modelItem => item.Price)</h5>
+                                        <a href="#" style="float:right"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+
                                     </div>
                                 }
-                                <a href="#" style="float:right"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
 
                             </div>
                         </div>
@@ -120,11 +125,29 @@
                             <div class="why-text">
                                 <h1>@Html.ActionLink(item.Name, "Details", new { id = item.Id })</h1>
                                 <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                                <div style="display:flex;position:absolute;bottom:0">
-                                    <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
-                                    <h5>&nbsp;-&nbsp;</h5>
-                                    <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
-                                </div>
+                                @if (item.PromotionPrice >= 1)
+                                {
+                                    <div style="display: flex; position: absolute; bottom: 0;width:100% ">
+                                        <div class="col-9" style="display:flex">
+                                            <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
+                                            <h5>&nbsp;-&nbsp;</h5>
+                                            <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href="#" style="float:right;margin-top:-5px"><i class="fa fa-cart-plus" style="font-size:22px" aria-hidden="true"></i></a>
+
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="display:flex;position:absolute;bottom:0">
+                                        <h5> ₫@Html.DisplayFor(modelItem => item.Price)</h5>
+                                        <a href="#" style="float:right"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+
+                                    </div>
+                                }
+
                             </div>
                         </div>
                     </div>
