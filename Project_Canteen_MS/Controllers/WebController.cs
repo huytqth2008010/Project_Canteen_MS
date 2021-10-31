@@ -105,5 +105,38 @@ namespace Project_Canteen_MS.Controllers
             }
             return RedirectToAction("Cart");
         }
+        public ActionResult Update(FormCollection fc)
+        {
+           
+            return View();
+        }
+        public ActionResult CheckOut()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CheckOut(Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                var cart = (Cart)Session["cart"];
+                order.GrandTotal = cart.GrandTotal;
+                order.CreatedAt = DateTime.Now;
+                order.Status = 1;
+                db.Orders.Add(order);
+                db.SaveChanges();
+
+                foreach (var item in cart.CartItems)
+                {
+                    OrderItem orderItem = new OrderItem() { OrderID = order.Id, ProductID = item.Product.Id, Qty = item.Qty, Price = item.Product.Price };
+                    db.OrderItems.Add(orderItem);
+                }
+                db.SaveChanges();
+                Session["cart"] = null;// xoa gio hang
+            }
+
+            return RedirectToAction("Index");
+        }
     }
  }

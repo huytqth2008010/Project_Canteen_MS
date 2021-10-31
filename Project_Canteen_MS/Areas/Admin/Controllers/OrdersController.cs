@@ -10,108 +10,107 @@ using Project_Canteen_MS.Models;
 
 namespace Project_Canteen_MS.Areas.Admin.Controllers
 {
-    public class BillsController : Controller
+    public class OrdersController : Controller
     {
         private DataContext db = new DataContext();
 
-        // GET: Admin/Bills
-        [Authorize]
+        // GET: Admin/Orders
         public ActionResult Index()
         {
-            return View(db.Bills.ToList());
+            return View(db.Orders.ToList());
         }
 
-        // GET: Admin/Bills/Details/5
+        // GET: Admin/Orders/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bill bill = db.Bills.Find(id);
-            if (bill == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(bill);
+            return View(order);
         }
 
-        // GET: Admin/Bills/Create
+        // GET: Admin/Orders/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Bills/Create
+        // POST: Admin/Orders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Payments,Total_Amount")] Bill bill)
+        public ActionResult Create([Bind(Include = "Id,Name,Telephone,Address,GrandTotal,CreatedAt,Status")] Order order)
         {
             if (ModelState.IsValid)
             {
-                db.Bills.Add(bill);
+                db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(bill);
+            return View(order);
         }
 
-        // GET: Admin/Bills/Edit/5
+        // GET: Admin/Orders/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bill bill = db.Bills.Find(id);
-            if (bill == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(bill);
+            return View(order);
         }
 
-        // POST: Admin/Bills/Edit/5
+        // POST: Admin/Orders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Payments,Total_Amount")] Bill bill)
+        public ActionResult Edit([Bind(Include = "Id,Name,Telephone,Address,GrandTotal,CreatedAt,Status")] Order order)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bill).State = EntityState.Modified;
+                db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(bill);
+            return View(order);
         }
 
-        // GET: Admin/Bills/Delete/5
+        // GET: Admin/Orders/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bill bill = db.Bills.Find(id);
-            if (bill == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(bill);
+            return View(order);
         }
 
-        // POST: Admin/Bills/Delete/5
+        // POST: Admin/Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Bill bill = db.Bills.Find(id);
-            db.Bills.Remove(bill);
+            Order order = db.Orders.Find(id);
+            db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

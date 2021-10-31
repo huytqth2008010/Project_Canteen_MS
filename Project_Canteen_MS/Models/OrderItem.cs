@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.ComponentModel.DataAnnotations;
 namespace Project_Canteen_MS.Models
 {
-    public class Bill_detail
+    public class OrderItem
     {
+        [Key]
         public int Id { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
         public int Qty { get; set; }
-        public string Name { get; set; }
         public int Price { get; set; }
-
     }
 }
