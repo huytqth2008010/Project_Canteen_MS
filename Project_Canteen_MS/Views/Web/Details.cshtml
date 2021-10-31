@@ -43,15 +43,19 @@
                     </div>
                     <p>@Html.DisplayFor(model => model.Description)</p>
 
-                    <div class="product-count" style="display:flex">
-                        <label for="size">Số Lượng</label>
-                        <form action="#" class="display-flex" style="margin-top:-10px;margin-left:25px">
-                            <div class="qtyminus">-</div>
-                            <input type="text" name="quantity" value="1" class="qty" style="border: solid 1px #D65106;">
-                            <div class="qtyplus">+</div>
-                        </form>
-                    </div>
-                        <a href="#" class="round-black-btn">Thêm vào giỏ hàng</a>
+
+                    @using (Html.BeginForm("AddToCart", "Web", new { Id = Model.Id }, FormMethod.Get))
+                    {
+                        <div class="product-count" style="display:flex">
+                            <label for="size">Số Lượng</label>
+                            <div class="display-flex" style="margin-top:-10px;margin-left:25px">
+                                <div class="qtyminus">-</div>
+                                <input type="number" name="qty" value="1" class="qty" style="border: solid 1px #D65106;padding-left:13px">
+                                <div class="qtyplus">+</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="round-black-btn">Thêm vào giỏ hàng</button>
+                    }
 
                 </div>
             </div>
@@ -113,6 +117,7 @@
         </div>
     </div>
 </div>
+
 <!--Important link from https://bootsnipp.com/snippets/XqvZr-->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">

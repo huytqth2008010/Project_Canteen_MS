@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = null;
+    var cart = Session["Cart"] != null ? Session["Cart"] as Project_Canteen_MS.Models.Cart : new Project_Canteen_MS.Models.Cart();
+}
+
+<h2>Giỏ hàng</h2>
+@if (cart.CartItems.Count > 0)
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành Tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in cart.CartItems)
+            {
+                int total = item.Qty * item.Product.Price;
+                <tr>
+                    <td>@item.Product.Id</td>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Price</td>
+                    <td>@item.Qty</td>
+                    <td>@total</td>
+                    <td>
+                        @Html.ActionLink("Remove", "RemoveItem", new { id = item.Product.Id }, new { @class = "btn btn-warning" }
+                )
+                </td>
+            </tr>
+        }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-right" colspan="6">Grand Total: <span class="text-danger">@cart.GrandTotal</span></td>
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <p>Không có sản phẩm nào trong giỏ hàng</p>
+}

@@ -146,6 +146,8 @@
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Bill_detail.cs" />
     <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DataContext.cs" />
@@ -253,6 +255,7 @@
     <Content Include="Content\webcanteen\js\picker.js" />
     <Content Include="Content\webcanteen\js\picker.time.js" />
     <Content Include="Content\webcanteen\js\popper.min.js" />
+    <Content Include="Content\webcanteen\js\style.js" />
     <Content Include="Content\webcanteen\menu.html" />
     <Content Include="Content\webcanteen\php\form-process.php" />
     <Content Include="Content\webcanteen\reservation.html" />
@@ -353,6 +356,7 @@
     <Content Include="Views\Web\Shop.cshtml" />
     <Content Include="Views\Web\Category.cshtml" />
     <Content Include="Views\Web\Details.cshtml" />
+    <Content Include="Views\Web\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
