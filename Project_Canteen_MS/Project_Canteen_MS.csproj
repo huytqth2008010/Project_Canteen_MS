@@ -193,6 +193,11 @@
     <Content Include="Content\webcanteen\css\superslides.css" />
     <Content Include="Content\webcanteen\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\webcanteen\gallery.html" />
+    <Content Include="Content\webcanteen\images\241905002_131965279163695_7965189224285870673_n.jpg" />
+    <Content Include="Content\webcanteen\images\244531426_419501096206350_8048621408797905946_n.jpg" />
+    <Content Include="Content\webcanteen\images\248513269_409315657299749_3843773202836039797_n.jpg" />
+    <Content Include="Content\webcanteen\images\248671796_474668373795842_7896197626743053313_n.jpg" />
+    <Content Include="Content\webcanteen\images\249045541_565244007869338_7568110531953035963_n.jpg" />
     <Content Include="Content\webcanteen\images\about-bg.jpg" />
     <Content Include="Content\webcanteen\images\about-img.jpg" />
     <Content Include="Content\webcanteen\images\all-bg.jpg" />
