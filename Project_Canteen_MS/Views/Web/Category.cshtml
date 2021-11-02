@@ -26,8 +26,8 @@
                                 <div class="gallery-single fix ">
                                     <img src="@Url.Content(item.Image)" alt="Image" width="350" height="250">
                                     <div class="why-text">
-                                        <h1>@Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { Style = "color:#fff;font-size:25px" })</h1>
-                                        <p style="font-size:20px">@Html.DisplayFor(modelItem => item.Description)</p>
+                                        <h1 style=" overflow: hidden; text-overflow: ellipsis; height:31px; -webkit-line-clamp: 1; display: -webkit-box; -webkit-box-orient: vertical; ">@Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { Style = "color:#fff;font-size:25px" })</h1>
+                                        <p style="font-size: 20px; overflow: hidden; text-overflow: ellipsis; line-height: 25px; -webkit-line-clamp: 6; height: 150px; display: -webkit-box; -webkit-box-orient: vertical; ">@Html.DisplayFor(modelItem => item.Description)</p>
                                         @if (item.PromotionPrice >= 1)
                                         {
                                             <div style="display: flex; position: absolute; bottom: 0;width:100% ">

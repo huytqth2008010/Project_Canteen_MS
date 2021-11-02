@@ -7,21 +7,26 @@ using Project_Canteen_MS.Models;
 using System.IO;
 using System.Dynamic;
 using System.Net;
-
+using PagedList;
+using X.PagedList;
 namespace Project_Canteen_MS.Controllers
 {
     public class WebController : Controller
     {
         private DataContext db = new DataContext();
         // GET: Web
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
+            var pageNumber = page ?? 1; // if no page is specified, default to the first page (1)
+            int pageSize = 25; // Get 25 students for each requested page.
             dynamic data = new ExpandoObject();
             data.Slides = db.Slides.ToList();
-            data.Products = db.Products.ToList();
-            data.Products1 = db.Products.Where(x => x.PromotionPrice >= 1).ToList();
+            data.Products = db.Products.Where(x => x.Id <= 6).ToList();
+            data.Products1 = db.Products.Where(x => x.PromotionPrice >= 1).ToList() ;
             return View(data);
+          
         }
+
         public ActionResult About()
         {
             return View();
