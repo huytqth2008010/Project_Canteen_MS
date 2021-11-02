@@ -61,36 +61,51 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Status)
                     </th>
-                    <th></th>
+                    <th>
+                        Actions
+                    </th>
+
+
+
+
                 </tr>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Telephone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.GrandTotal)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedAt)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telephone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GrandTotal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+
+                        <td>
+                            <button class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                <a href="~/Admin/Orders/Edit/@item.Id" style="color: slategray">
+                                    <i data-feather="edit"></i>
+                                </a>
+                            </button>
+                            <button class="btn btn-datatable btn-icon btn-transparent-dark">
+
+                                <a onlick="return confirm('Are you sure ?')" href="~/Admin/Orders/Delete/@item.Id" style="color:slategray">
+                                    <i data-feather="trash-2"></i>
+                            </button>
+                        </td>
+
+                    </tr>
                     }
 
                 </tbody>
