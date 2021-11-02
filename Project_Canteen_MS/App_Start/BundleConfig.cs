@@ -71,6 +71,9 @@ namespace Project_Canteen_MS
                        "~/Content/webcanteen/js/baguetteBox.min.js",
                        "~/Content/webcanteen/js/style.js"
                ));
+            bundles.Add(new StyleBundle("~/app/css").Include(
+                   "~/Content/app.css"
+             ));
         }
     }
 }
