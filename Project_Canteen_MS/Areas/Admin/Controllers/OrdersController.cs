@@ -15,6 +15,7 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         private DataContext db = new DataContext();
 
         // GET: Admin/Orders
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Orders.ToList());
@@ -94,34 +95,16 @@ namespace Project_Canteen_MS.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             Order order = db.Orders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
-        }
-
-        // POST: Admin/Orders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Order order = db.Orders.Find(id);
             db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

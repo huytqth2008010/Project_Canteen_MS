@@ -4,18 +4,19 @@
     Layout = "~/Views/Shared/_WebPage.cshtml";
     var cart = Session["Cart"] != null ? Session["Cart"] as Project_Canteen_MS.Models.Cart : new Project_Canteen_MS.Models.Cart();
 }
-<div class="all-page-title page-breadcrumb">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Giỏ Hàng</h1>
-            </div>
-        </div>
-    </div>
-</div>
 
 @if (cart.CartItems.Count > 0)
 {
+    <div class="all-page-title page-breadcrumb">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Giỏ Hàng</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="cart-page theme-default-margin section" style="padding-top: 100px; padding-bottom: 100px;">
         <div class="container">
             <div class="row">
@@ -27,7 +28,7 @@
                                     <th class="pro-title">Tên Sản Phẩm</th>
                                     <th class="pro-thumbnail" width="180">Ảnh</th>
                                     <th class="pro-price">Giá</th>
-                                    <th class="pro-quantity" width="180" >Số Lượng</th>
+                                    <th class="pro-quantity" width="180">Số Lượng</th>
                                     <th class="pro-subtotal">Tổng</th>
                                     <th class="pro-remove">Remove</th>
                                 </tr>
@@ -36,22 +37,22 @@
                                 @foreach (var item in cart.CartItems)
                                 {
                                     int total = item.Qty * item.Product.Price;
-                                        <tr style="text-align: center; font-size: 18px">
+                                    <tr style="text-align: center; font-size: 18px">
 
-                                            <td class="pro-title">@item.Product.Name  </td>
-                                            <td class="pro-thumbnail">
-                                                <img src="@Url.Content(item.Product.Image)" width="150" />
-                                            </td>
-                                            <td class="pro-price"><span class="amount"><span>@item.Product.Price</span></span></td>
-                                            @*<td class="pro-quantity">@item.Qty</td>*@
-                                            <td>
-                                                    <input type="number" name="qty" value="@item.Qty" class="qty" style="border: solid 1px #dee2e6; padding-left: 13px; width: 120px; text-align: center; font-size: 16px">
-                                            </td>
-                                            <td class="pro-subtotal"><span>@total</span></td>
+                                        <td class="pro-title">@item.Product.Name  </td>
+                                        <td class="pro-thumbnail">
+                                            <img src="@Url.Content(item.Product.Image)" width="150" />
+                                        </td>
+                                        <td class="pro-price"><span class="amount"><span>@item.Product.Price</span></span></td>
+                                        @*<td class="pro-quantity">@item.Qty</td>*@
+                                        <td>
+                                            <input type="number" name="qty" value="@item.Qty" class="qty" style="border: solid 1px #dee2e6; padding-left: 13px; width: 120px; text-align: center; font-size: 16px">
+                                        </td>
+                                        <td class="pro-subtotal"><span>@total</span></td>
 
 
-                                            <td class="pro-remove"> @Html.ActionLink("X", "RemoveItem", new { id = item.Product.Id })</td>
-                                        </tr>
+                                        <td class="pro-remove"> @Html.ActionLink("X", "RemoveItem", new { id = item.Product.Id })</td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -63,7 +64,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <button type="submit" style="cursor: pointer; border-radius: 4px; background: #D65106; color: #fff; padding: 7px 45px; display: inline-block; margin-top: 20px; border: solid 2px #D65106; transition: all 0.5s ease-in-out 0s; }">
-                                      Cập Nhật
+                                    Cập Nhật
                                 </button>
                             </div>
                             <div class="col-lg-6">
@@ -85,8 +86,8 @@
                                         </table>
                                     </div>
                                     <div class="proceed-to-checkout">
-                                        <button type="submit" class="round-black-btn" style="cursor: pointer; border-radius: 4px; background: #D65106; color: #fff; padding: 7px 45px; display: inline-block; margin-top: 20px; border: solid 2px #D65106; transition: all 0.5s ease-in-out 0s; }" name="checkout">@Html.ActionLink("Tiến Hành Thanh Toán", "CheckOut", new {Styles = "color:#fff" })</button>
-                                        
+                                        <button type="submit" class="round-black-btn" style="cursor: pointer; border-radius: 4px; background: #D65106; color: #fff; padding: 7px 45px; display: inline-block; margin-top: 20px; border: solid 2px #D65106; transition: all 0.5s ease-in-out 0s; }" name="checkout">@Html.ActionLink("Tiến Hành Thanh Toán", "CheckOut", new { Styles = "color:#fff" })</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -100,5 +101,14 @@
 }
 else
 {
-    <p>Không có sản phẩm nào trong giỏ hàng</p>
+    <div class="all-page-title page-breadcrumb">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Không có sản phẩm nào trong giỏ hàng</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
 }
