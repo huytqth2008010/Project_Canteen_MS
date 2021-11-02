@@ -6,42 +6,29 @@
 }
 
 
+
+Mạnh VG
 <!-- Start slides -->
 <div id="slides" class="cover-slides">
     <ul class="slides-container">
-        <li class="text-left">
-            <img src="~/Content/webcanteen/images/slider-01.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Chào mùng đến với <br> Live Dinner Restaurant</strong></h1>
-                        
+        @foreach (Project_Canteen_MS.Models.Slide item in Model.Slides)
+        {
+            <li class="text-left">
+                <img src="@Url.Content(item.Image)" />
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Chào mừng bạn đến <br> @Html.DisplayFor(modelItem => item.Title)</strong></h1>
+                            <p class="m-b-40">
+                                @Html.DisplayFor(modelItem => item.Content)
+                            </p>
+                            <p><a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Liên Hệ</a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </li>
-        <li class="text-left">
-            <img src="~/Content/webcanteen/images/slider-02.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Chào mùng đến với <br> Live Dinner Restaurant</strong></h1>
-                       
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li class="text-left">
-            <img src="~/Content/webcanteen/images/slider-03.jpg" alt="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="m-b-20"><strong>Chào mùng đến với <br> Live Dinner Restaurant</strong></h1>
-                        
-                    </div>
-                </div>
-            </div>
-        </li>
+            </li>
+        }
     </ul>
     <div class="slides-navigation">
         <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
@@ -49,25 +36,64 @@
     </div>
 </div>
 <!-- End slides -->
-<!-- Start About -->
-<div class="about-section-box">
+<!-- Start Gallery -->
+<div class="gallery-box">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                <div class="inner-column">
-                    <h1>Chào mùng đến với <span>Live Dinner Restaurant</span></h1>
-                    <h4>Mẩu chuyện</h4>
-                    <p> Bản thân nỗi đau là rất nhiều niềm vui, nó là trọng tâm chính. Tác giả nhận được hệ thống miễn dịch. Ut at phesiaesque ante, sed collis arcu. Không có điều nào trong số này là dễ dàng, những người eros trong sự tang tóc phổ biến, sự thù hận trước các thành viên của chiếc xe, nhu cầu của chiếc giường là và sem. </p>
-                    <p>Nhưng người bình thường luôn là cánh cửa để đầu tư Ngay cả lãnh thổ của một người là Hoa Kỳ. Nhưng một số nỗi sợ hãi là phương tiện, từ giá đất cho những đứa trẻ. Không có sự đau đớn thực sự trong sân và tấm đệm lớn nhất. </p>
+            <div class="col-lg-12">
+                <div class="heading-title text-center">
+                    <h2>Tất cả các sản phẩm</h2>
+                    <p>Đây là tất cả các sản phẩm của cửa hàng chúng tôi</p>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <img src="~/Content/webcanteen/images/about-img.jpg" alt="" class="img-fluid">
+        </div>
+        <div class="tz-gallery">
+            <div class="row">
+                @foreach (Project_Canteen_MS.Models.Product item in Model.Products)
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-4 special-grid drinks">
+                        <div class="gallery-single fix ">
+                            <img src="@Url.Content(item.Image)" alt="Image" width="350" height="250">
+                            <div class="why-text">
+                                <h1>@Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { Style = "color:#fff;font-size:25px" })</h1>
+                                <p style="font-size:20px">@Html.DisplayFor(modelItem => item.Description)</p>
+                                @if (item.PromotionPrice >= 1)
+                                {
+                                    <div style="display: flex; position: absolute; bottom: 0;width:100% ">
+                                        <div class="col-9" style="display:flex">
+                                            <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
+                                            <h5>&nbsp;-&nbsp;</h5>
+                                            <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a style="float:right;margin-top:-5px" href="@Url.Action("AddToCart", "Web", new { id = item.Id, qty = item.Quantity })">
+                                                <i class="fa fa-cart-plus" style="font-size: 22px; color: #fff" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="display: flex; position: absolute; bottom: 0;width:100% ">
+                                        <div class="col-9" style="display:flex">
+                                            <h5>₫@Html.DisplayFor(modelItem => item.Price)</h5>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a style="float:right;margin-top:-5px" href="@Url.Action("AddToCart", "Web", new { id = item.Id, qty = item.Quantity })">
+                                                <i class="fa fa-cart-plus" style="font-size: 22px; color: #fff" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
-<!-- End About -->
+<!-- End Gallery -->
 <!-- Start QT -->
 <div class="qt-box qt-background">
     <div class="container">
@@ -75,329 +101,70 @@
             <div class="col-md-8 ml-auto mr-auto text-center">
                 <p class="lead ">
                     "Nếu bạn không phải là người nấu ăn, hãy tránh xa và khen ngợi đầu bếp."
+
                 </p>
-                <span class="lead">Michael Strahan</span>
+                <span class="lead">A li ba ba</span>
             </div>
         </div>
     </div>
 </div>
 <!-- End QT -->
-<!-- Start Menu -->
-<div class="menu-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="heading-title text-center">
-                    <h2>Menu đặc biệt</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="row inner-menu-box">
-            <div class="col-3">
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Tất cả</a>
-                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Nước uống</a>
-                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Bữa trưa</</a>
-                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Bữa tối</a>
-                </div>
-            </div>
-
-            <div class="col-9">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-01.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Drinks 1</h4>
-                                        <h5> $7.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-02.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Drinks 2</h4>
-                                        <h5> $9.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-03.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Drinks 3</h4>
-                                        <h5> $10.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid lunch">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-04.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Lunch 1</h4>
-                                        <h5> $15.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid lunch">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-05.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Lunch 2</h4>
-                                        <h5> $18.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid lunch">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-06.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Lunch 3</h4>
-                                        <h5> $20.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid dinner">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-07.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Dinner 1</h4>
-                                        <h5> $25.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid dinner">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-08.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Dinner 2</h4>
-                                        <p>Sed id magna vitae eros sagittis euismod.</p>
-                                        <h5> $22.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid dinner">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-09.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Dinner 3</h4>
-                                        <h5> $24.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-01.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Drinks 1</h4>
-                                        <h5> $7.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-02.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Drinks 2</h4>
-                                        <h5> $9.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid drinks">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-03.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Drinks 3</h4>
-                                        <h5> $10.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 special-grid lunch">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-04.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Lunch 1</h4>
-                                        <h5> $15.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid lunch">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-05.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Lunch 2</h4>
-                                        <h5> $18.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid lunch">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-06.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Lunch 3</h4>
-                                        <h5> $20.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 special-grid dinner">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-07.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Dinner 1</h4>
-                                        <h5> $25.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid dinner">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-08.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Dinner 2</h4>
-                                        <h5> $22.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 special-grid dinner">
-                                <div class="gallery-single fix">
-                                    <img src="~/Content/webcanteen/images/img-09.jpg" class="img-fluid" alt="Image">
-                                    <div class="why-text">
-                                        <h4>Special Dinner 3</h4>
-                                        <h5> $24.79</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- End Menu -->
 <!-- Start Gallery -->
 <div class="gallery-box">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="heading-title text-center">
-                    <h2>Thư viện</h2>
+                    <h2>Tất cả các sản phẩm giảm giá</h2>
+                    <p>Đây là tất cả các sản phẩm đang được giảm giá của cửa hàng chúng tôi</p>
                 </div>
             </div>
         </div>
         <div class="tz-gallery">
             <div class="row">
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <a class="lightbox" href="~/Content/webcanteen/images/gallery-img-01.jpg">
-                        <img class="img-fluid" src="~/Content/webcanteen/images/gallery-img-01.jpg" alt="Gallery Images">
-                    </a>
+
+                @foreach (Project_Canteen_MS.Models.Product item in Model.Products1)
+                {
+                <div class="col-sm-6 col-md-4 col-lg-4 special-grid drinks">
+                    <div class="gallery-single fix ">
+                        <img src="@Url.Content(item.Image)" alt="Image" width="350" height="250">
+                        <div class="why-text">
+                            <h1>@Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { Style = "color:#fff;font-size:25px" })</h1>
+                            <p style="font-size:20px">@Html.DisplayFor(modelItem => item.Description)</p>
+                            @if (item.PromotionPrice >= 1)
+                            {
+                                <div style="display: flex; position: absolute; bottom: 0;width:100% ">
+                                    <div class="col-9" style="display:flex">
+                                        <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
+                                        <h5>&nbsp;-&nbsp;</h5>
+                                        <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a style="float:right;margin-top:-5px" href="@Url.Action("AddToCart", "Web", new { id = item.Id, qty = item.Quantity })">
+                                            <i class="fa fa-cart-plus" style="font-size: 22px; color: #fff" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div style="display: flex; position: absolute; bottom: 0;width:100% ">
+                                    <div class="col-9" style="display:flex">
+                                        <h5>₫@Html.DisplayFor(modelItem => item.Price)</h5>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a style="float:right;margin-top:-5px" href="@Url.Action("AddToCart", "Web", new { id = item.Id, qty = item.Quantity })">
+                                            <i class="fa fa-cart-plus" style="font-size: 22px; color: #fff" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="~/Content/webcanteen/images/gallery-img-02.jpg">
-                        <img class="img-fluid" src="~/Content/webcanteen/images/gallery-img-02.jpg" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="~/Content/webcanteen/images/gallery-img-03.jpg">
-                        <img class="img-fluid" src="~/Content/webcanteen/images/gallery-img-03.jpg" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <a class="lightbox" href="~/Content/webcanteen/images/gallery-img-04.jpg">
-                        <img class="img-fluid" src="~/Content/webcanteen/images/gallery-img-04.jpg" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="~/Content/webcanteen/images/gallery-img-05.jpg">
-                        <img class="img-fluid" src="~/Content/webcanteen/images/gallery-img-05.jpg" alt="Gallery Images">
-                    </a>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-4">
-                    <a class="lightbox" href="~/Content/webcanteen/images/gallery-img-06.jpg">
-                        <img class="img-fluid" src="~/Content/webcanteen/images/gallery-img-06.jpg" alt="Gallery Images">
-                    </a>
-                </div>
+                }
             </div>
         </div>
     </div>
 </div>
 <!-- End Gallery -->
-<!-- Start Customer Reviews -->
-<div class="customer-reviews-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="heading-title text-center">
-                    <h2>Người dùng đánh giá </h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 mr-auto ml-auto text-center">
-                <div id="reviews" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner mt-4">
-                        <div class="carousel-item text-center active">
-                            <div class="img-box p-1 border rounded-circle m-auto">
-                                <img class="d-block w-100 rounded-circle" src="~/Content/webcanteen/images/quotations-button.png" alt="">
-                            </div>
-                            <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Paul Mitchel</strong></h5>
-                            <p class="m-0 pt-3"> Yêu chính nỗi đau Đối với bóng đá là rất nhiều thời gian, và nỗi đau là đáng giá. Nỗi sợ hãi rất lớn, các món ăn cũng không bị ô nhục, luôn luôn có trước người Viking. Tôi không uống sô cô la nguyên chất. </p>                        </div>
-                        <div class="carousel-item text-center">
-                            <div class="img-box p-1 border rounded-circle m-auto">
-                                <img class="d-block w-100 rounded-circle" src="~/Content/webcanteen/images/quotations-button.png" alt="">
-                            </div>
-                            <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Steve Fonsi</strong></h5>
-                            <p class="m-0 pt-3"> Yêu chính nỗi đau Đối với bóng đá là rất nhiều thời gian, và nỗi đau là đáng giá. Nỗi sợ hãi rất lớn, các món ăn cũng không bị ô nhục, luôn luôn có trước người Viking. Tôi không uống sô cô la nguyên chất. </p>                        </div>
-                        <div class="carousel-item text-center">
-                            <div class="img-box p-1 border rounded-circle m-auto">
-                                <img class="d-block w-100 rounded-circle" src="~/Content/webcanteen/images/quotations-button.png" alt="">
-                            </div>
-                            <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Daniel vebar</strong></h5>
-                            <p class="m-0 pt-3"> Yêu chính nỗi đau Đối với bóng đá là rất nhiều thời gian, và nỗi đau là đáng giá. Nỗi sợ hãi rất lớn, các món ăn cũng không bị ô nhục, luôn luôn có trước người Viking. Tôi không uống sô cô la nguyên chất.  </p>                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#reviews" role="button" data-slide="prev">
-                        <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#reviews" role="button" data-slide="next">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Customer Reviews -->

@@ -22,39 +22,43 @@
                         <div class="row">
                             @foreach (var item in Model)
                             {
-                                <div class="col-sm-6 col-md-4 col-lg-4 special-grid drinks">
-                                    <div class="gallery-single fix ">
-                                        <img src="@Url.Content(item.Image)" class="img-fluid" alt="Image">
-                                        <div class="why-text">
-                                            <h1>@Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { Style = "color:#fff;font-size:25px" })</h1>
-                                            <p  style="font-size:20px">@Html.DisplayFor(modelItem => item.Description)</p>
-                                            @if (item.PromotionPrice >= 1)
-                                            {
-                                                <div style="display: flex; position: absolute; bottom: 0;width:100% ">
-                                                    <div class="col-9" style="display:flex">
-                                                        <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
-                                                        <h5>&nbsp;-&nbsp;</h5>
-                                                        <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <a href="#" style="float:right;margin-top:-5px"><i class="fa fa-cart-plus" style="font-size: 22px; color: #fff" aria-hidden="true"></i></a>
-                                                    </div>
+                            <div class="col-sm-6 col-md-4 col-lg-4 special-grid drinks">
+                                <div class="gallery-single fix ">
+                                    <img src="@Url.Content(item.Image)" alt="Image" width="350" height="250">
+                                    <div class="why-text">
+                                        <h1>@Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { Style = "color:#fff;font-size:25px" })</h1>
+                                        <p style="font-size:20px">@Html.DisplayFor(modelItem => item.Description)</p>
+                                        @if (item.PromotionPrice >= 1)
+                                        {
+                                            <div style="display: flex; position: absolute; bottom: 0;width:100% ">
+                                                <div class="col-9" style="display:flex">
+                                                    <h5><del>₫@Html.DisplayFor(modelItem => item.Price)</del></h5>
+                                                    <h5>&nbsp;-&nbsp;</h5>
+                                                    <h5>₫@Html.DisplayFor(modelItem => item.PromotionPrice)</h5>
                                                 </div>
-                                            }
-                                            else
-                                            {
-                                                <div style="display: flex; position: absolute; bottom: 0;width:100% ">
-                                                    <div class="col-9" style="display:flex">
-                                                        <h5>₫@Html.DisplayFor(modelItem => item.Price)</h5>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <a href="#" style="float:right;margin-top:-5px"><i class="fa fa-cart-plus" style="font-size:22px;color:#fff" aria-hidden="true"></i></a>
-                                                    </div>
+                                                <div class="col-md-2">
+                                                    <a style="float:right;margin-top:-5px" href="@Url.Action("AddToCart", "Web", new { id = item.Id, qty = item.Quantity })">
+                                                        <i class="fa fa-cart-plus" style="font-size: 22px; color: #fff" aria-hidden="true"></i>
+                                                    </a>
                                                 </div>
-                                            }
-                                        </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="display: flex; position: absolute; bottom: 0;width:100% ">
+                                                <div class="col-9" style="display:flex">
+                                                    <h5>₫@Html.DisplayFor(modelItem => item.Price)</h5>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <a style="float:right;margin-top:-5px" href="@Url.Action("AddToCart", "Web", new { id = item.Id, qty = item.Quantity })">
+                                                        <i class="fa fa-cart-plus" style="font-size: 22px; color: #fff" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
+                            </div>
                             }
                         </div>
                     </div>
